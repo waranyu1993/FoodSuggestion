@@ -1,0 +1,11 @@
+DirectoryIndex index.php
+
+RewriteEngine On
+
+RewriteBase /foodsuggestion/
+
+RewriteCond $1 ^(index\.php|robots\.txt|favicon\.ico|sitemap\.xml|public)
+
+RewriteRule ^(.*)$ - [PT,L]
+
+RewriteRule ^(.*)$ index.php/$1 [PT,L]
