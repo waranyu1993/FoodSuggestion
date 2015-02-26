@@ -9,6 +9,11 @@
 	        	<span class="icon-bar"></span>
 	        	<span class="icon-bar"></span>
 	        </button>
+	        <ul class="nav navbar-nav navbar-right">
+	        	<li>
+					<a href="<?= base_url("criticaltemp") ?>">Catagory</a>
+				</li>
+			</ul>
 		</div>
 			<form name="logout_form" id="logout_form" class="form-inline" role="form" action="<?= base_url("login/logout") ?>" method="post">
 				<ul class="nav navbar-nav navbar-right">
