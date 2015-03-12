@@ -48,7 +48,7 @@ $(document).ready(function() {
     <div class="section" id="section0">
     	<div class="row">
     		<div class="col-sm-push-4 col-xs-12">
-    			<h1>Welcome to Food Suggestion</h1>
+    			<h1>Welcome to Food Suggestion TEST</h1>
     		</div>
 			<div class="boxshadow1 boxshadow2 col-sm-4 col-sm-push-4 col-xs-12" style="margin-top: 150px">
 				<div role="tabpanel">
