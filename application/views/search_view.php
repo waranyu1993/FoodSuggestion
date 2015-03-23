@@ -1,64 +1,18 @@
-<script>
-$('#myTab a').click(function (e) {
-		e.preventDefault()
-		$(this).tab('show')
-})
-
-$(document).ready(function() {
-	$('#fullpage').fullpage({
-		anchors: ['searchpage', 'toprecipe'],
-		autoScrolling: false,
-		menu: '#menu',
-		resize: false,
-        animateAnchor:false,
-		scrollOverflow: true,
-		responsive: 900,
-		fitSection: false,
-		navigation:true,
-		continuousVertical:true,
-        css3: true,
-		afterLoad: function(anchorLink, index){
-
-			//section 2
-			if(index == 2){
-				//moving the image
-				$('#section1').find('img').delay(500).animate({
-					left: '0%'
-				}, 1500, 'easeOutExpo');
-
-				$('#section1').find('p').first().fadeIn(1800, function(){
-					$('#section1').find('p').last().fadeIn(1800);
-				});;
-
-			}
-
-			//section 3
-			if(anchorLink == '3rdPage'){
-				//moving the image
-				$('#section2').find('.intro').delay(500).animate({
-					left: '0%'
-				}, 1500, 'easeOutExpo');
-			}
-		}
-	});
-});
-</script>
-
 <div id="fullpage">
     <div class="section" id="section0">
     	<div class="row">
-    		<div class="col-sm-push-4 col-xs-12">
+    		<!-- <div class="col-sm-push-4 col-xs-12">
     			<h1>Welcome to Food Suggestion</h1>
-    		</div>
+    		</div> -->
 			<div class="boxshadow1 boxshadow2 col-sm-4 col-sm-push-4 col-xs-12" style="margin-top: 150px">
 				<div role="tabpanel">
 					<ul class="nav nav-tabs" role="tablist" id="myTab">
-					  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Search by recipe</a></li>
-					  <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Search by ingredient</a></li>
+					  <li class="recipe_form" role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Search by recipe</a></li>
+					  <li class="ingredient_form" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Search by ingredient</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="home">
-							<form id="recipe_form" name="recipe_form" class="form-signin" action="<?= base_url('search/check') ?>" role="form" method="post">
+							<form autocomplete="off" id="recipe_form" name="recipe_form" class="form-signin" role="form" method="post">
 								<center>
 									<h2 class="form-signin-heading" style="color: white">Recipe Search</h2>
 								</center>
@@ -70,13 +24,13 @@ $(document).ready(function() {
 								<br>
 								<br>
 								<div class="form-inline">
-								<input id="recipe_input" name="recipe_input" type="username" class="form-control" style="width: 80%; margin: 0px auto 0px auto" placeholder="recipe" required="" autofocus="" />
-								<button class="button blue medium" type="submit" style="margin: 0px auto 0px auto; vertical-align: middle"><span class="glyphicon glyphicon-search"></span></button>
+									<input autocomplete="off" id="recipe_input" name="recipe_input" type="text" class="form-control" style="width: 80%; margin: 0px auto 0px auto" placeholder="recipe" required="" autofocus="" />
+									<button class="button blue medium" style="margin: 0px auto 0px auto; vertical-align: middle"><span class="glyphicon glyphicon-search"></span></button>
 								</div>
 							</form>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="profile">
-							<form id="ingredient_form" name="ingredient_form" class="form-signin" action="<?= base_url('search/check') ?>" role="form" method="post">
+							<form id="ingredient_form" name="ingredient_form" class="form-signin" role="form" method="post">
 								<center>
 									<h2 class="form-signin-heading" style="color: white">Ingredient Search</h2>
 								</center>
@@ -88,8 +42,8 @@ $(document).ready(function() {
 								<br>
 								<br>
 								<div class="form-inline">
-									<input id="ingredient_input" name="ingredient_input" type="username" class="form-control" style="width: 80%; margin: 0px auto 0px auto" placeholder="ingredient" required="" autofocus="" />
-									<button class="button green medium" type="submit" style="margin: 0px auto 0px auto; vertical-align: middle"><span class="glyphicon glyphicon-plus"></span></button>
+									<input autocomplete="off" id="ingredient_input" name="ingredient_input" type="text" class="form-control" style="width: 80%; margin: 0px auto 0px auto" placeholder="ingredient" required="" autofocus="" />
+									<input id="ingredient_submit" type="button" class="button green medium" style="margin: 0px auto 0px auto; vertical-align: middle" value="+" />
 								</div>
 							</form>
 						</div>
@@ -97,10 +51,19 @@ $(document).ready(function() {
 				</div>
 				<br>
 			</div>
+			<div class="boxshadow1 col-sm-3 col-sm-push-4 col-xs-12" id="ingredient_table" style="margin-top: 150px; margin-left: 30px; display: none">
+				<div class="box" style="color: white"><h5>Ingredient</h5></div>
+				<div style="height: 3px;width: 100%; float: left; background-color: white"></div>
+				<div class="box ing_insert" style="color: white; height: 50px">	
+					
+				</div>
+				<br />
+				<button class="btn btn-primary" type="button">Search</button>
+			</div>
 		</div>
+		
     </div>
     <div class="section" id="section1">
-    	
     	<div class="fp-slides">    	
     	<div class="row">
     		<div class="col-center-block col-sm-2 col-xs-12">
@@ -112,4 +75,106 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
+
+
 <!-- /container -->
+
+<script>
+	$('#myTab a').click(function (e) {
+			e.preventDefault()
+			$(this).tab('show')
+	})
+	
+	$(document).ready(function() {
+		$('#fullpage').fullpage({
+			anchors: ['searchpage', 'toprecipe'],
+			autoScrolling: false,
+			menu: '#menu',
+			resize: false,
+	        animateAnchor:false,
+			scrollOverflow: true,
+			responsive: 900,
+			fitSection: false,
+			navigation:true,
+			continuousVertical:true,
+	        css3: true,
+			afterLoad: function(anchorLink, index){
+	
+				//section 2
+				if(index == 2){
+					//moving the image
+					$('#section1').find('img').delay(500).animate({
+						left: '0%'
+					}, 1500, 'easeOutExpo');
+	
+					$('#section1').find('p').first().fadeIn(1800, function(){
+						$('#section1').find('p').last().fadeIn(1800);
+					});;
+	
+				}
+	
+				//section 3
+				if(anchorLink == '3rdPage'){
+					//moving the image
+					$('#section2').find('.intro').delay(500).animate({
+						left: '0%'
+					}, 1500, 'easeOutExpo');
+				}
+			}
+		});
+		
+		$(".ingredient_form").click(function(){
+            document.getElementById("ingredient_table").style.display = "";
+    	});
+    	
+    	$(".recipe_form").click(function(){
+            document.getElementById("ingredient_table").style.display = "none";
+    	});
+    	
+    	$(".ingredient_submit").click(function()){
+    		alert("FUCK");
+    	}
+    	
+	    $('#ingredient_form')
+	        // IMPORTANT: You must declare .on('init.field.fv')
+	        // before calling .formValidation(options)
+	        .on('init.field.fv', function(e, data) {
+	            // data.fv      --> The FormValidation instance
+	            // data.field   --> The field name
+	            // data.element --> The field element
+	
+	            var $parent = data.element.parents('.form-group'),
+	                $icon   = $parent.find('.form-control-feedback[data-fv-icon-for="' + data.field + '"]');
+	
+	            // You can retrieve the icon element by
+	            // $icon = data.element.data('fv.icon');
+	
+	            $icon.on('click.clearing', function() {
+	                // Check if the field is valid or not via the icon class
+	                if ($icon.hasClass('glyphicon-remove')) {
+	                    // Clear the field
+	                    data.fv.resetField(data.element);
+	                }
+	            });
+	        })
+	
+	        .formValidation({
+	            framework: 'bootstrap',
+	            icon: {
+	                valid: 'glyphicon glyphicon-ok',
+	                invalid: 'glyphicon glyphicon-remove',
+	                validating: 'glyphicon glyphicon-refresh'
+	            },
+	            fields: {
+	                ingredient_input: {
+	                    validators: {
+	                        notEmpty: {
+	                            message: 'The ingredient can not empty'
+	                        }
+	                    }
+	                }
+	            }
+	        });
+	});
+	
+</script>

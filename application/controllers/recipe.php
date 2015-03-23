@@ -2,7 +2,7 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class Search extends CI_Controller {
+class Recipe extends CI_Controller {
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,12 +20,12 @@ class Search extends CI_Controller {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this -> load -> model("search_model");
+		//$this -> load -> model("recipe_model");
 	}
 
 	public function index() {
 		
-		$this -> view -> page_view('search_view');
+		$this -> view -> page_view('recipe_view');
 	}
 }
 
