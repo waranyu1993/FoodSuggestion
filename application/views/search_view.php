@@ -131,10 +131,6 @@
             document.getElementById("ingredient_table").style.display = "none";
     	});
     	
-    	$(".ingredient_submit").click(function()){
-    		alert("FUCK");
-    	}
-    	
 	    $('#ingredient_form')
 	        // IMPORTANT: You must declare .on('init.field.fv')
 	        // before calling .formValidation(options)
