@@ -1,9 +1,7 @@
 <div id="fullpage">
     <div class="section" id="section0">
     	<div class="row">
-    		<div class="col-sm-push-4 col-xs-12">
-    			<h1>Welcome to Food Suggestion</h1>
-    		</div>
+    		<h1 style="text-align: center">Welcome to Food Suggestion</h1>
 			<div class="boxshadow1 boxshadow2 col-sm-4 col-sm-push-4 col-xs-12" style="margin-top: 150px">
 				<div role="tabpanel">
 					<ul class="nav nav-tabs" role="tablist" id="myTab">
@@ -64,7 +62,7 @@
 		
     </div>
     <div class="section" id="section1">
-    	<div class="fp-slides">    	
+    	<!-- <div class="fp-slides">    	
     	<div class="row">
     		<div class="col-center-block col-sm-2 col-xs-12">
 				<h1>[Food Name]</h1>
@@ -72,7 +70,7 @@
 		</div>
 		<div class="fp-controlArrow fp-prev"></div>
 		<div class="fp-controlArrow fp-next"></div>
-		</div>
+		</div> -->
 	</div>
 </div>
 
