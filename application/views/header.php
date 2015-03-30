@@ -1,5 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,8 +12,9 @@
 		echo link_tag("public/fullPage/jquery.fullPage.css", 'stylesheet');
 		echo link_tag("public/smartmenus/css/sm-core-css.css", 'stylesheet');
 		echo link_tag("public/smartmenus/css/sm-blue/sm-blue.css", 'stylesheet');
+		echo link_tag("public/owlcarousel/owlcarousel/owl-carousel.css", 'stylesheet');
+		echo link_tag("public/owlcarousel/owlcarousel/owl-theme.css", 'stylesheet');
 		echo link_tag("public/css/style.css", 'stylesheet');
-		
 		?>
 		
 		<style type="text/css">
@@ -36,7 +36,7 @@
 		<script type="text/javascript" src="<?= base_url("public/smartmenus/addons/bootstrap/jquery.smartmenus.bootstrap") ?>"></script>
 		<script type="text/javascript" src="<?= base_url("public/fullPage/jquery.fullPage.min.js") ?>"></script>
 		<script type="text/javascript" src="<?= base_url("public/fullPage/vendors/jquery.slimscroll.min.js") ?>"></script>				
-		
+		<script type="text/javascript" src="<?= base_url("public/owlcarousel/owlcarousel/owl-carousel.js") ?>"></script>
 		<script type="text/javascript" src="<?= base_url("public/bootstrap/js/bootstrap.js") ?>"></script>	
 		<script type="text/javascript" src="<?= base_url("public/script.js") ?>"></script>		
 			

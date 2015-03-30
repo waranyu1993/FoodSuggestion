@@ -62,16 +62,35 @@
 		
     </div>
     <div class="section" id="section1">
-    	<!-- <div class="fp-slides">    	
-    	<div class="row">
-    		<div class="col-center-block col-sm-2 col-xs-12">
-				<h1>[Food Name]</h1>
+    	<div class="slide" id="slide1" data-anchor="slide1">
+			<div class="intro">
+				<h1>Food01</h1>
+				<p>
+					You can even click on the navigation and jump directly to another section.
+				</p>
+				<br /><br />
+				<img src="<?= base_url("public/foodimg/food01.jpg") ?>">
 			</div>
 		</div>
-		<div class="fp-controlArrow fp-prev"></div>
-		<div class="fp-controlArrow fp-next"></div>
-		</div> -->
-	</div>
+
+	    <div class="slide" id="slide2" data-anchor="slide2">
+			<h1>Food02</h1>
+			<br /><br />
+			<img src="<?= base_url("public/foodimg/food02.jpg") ?>">
+		</div>
+
+		<div class="slide" id="slide3" data-anchor="slide3">
+			<h1>Food03</h1>
+			<br /><br />
+			<img src="<?= base_url("public/foodimg/food03.jpg") ?>">
+		</div>	
+		
+		<div class="slide" id="slide3" data-anchor="slide3">
+			<h1>Food04</h1>
+			<br /><br />
+			<img src="<?= base_url("public/foodimg/food04.jpg") ?>">
+		</div>
+    </div>
 </div>
 
 
@@ -82,10 +101,12 @@
 			e.preventDefault()
 			$(this).tab('show')
 	})
-	
+
 	$(document).ready(function() {
 		$('#fullpage').fullpage({
 			anchors: ['searchpage', 'toprecipe'],
+			sectionsColor: ['#FFFFFF', '#ABCDEF'],
+			slidesNavigation: true,
 			autoScrolling: false,
 			menu: '#menu',
 			resize: false,
@@ -93,7 +114,7 @@
 			scrollOverflow: true,
 			responsive: 900,
 			fitSection: false,
-			navigation:true,
+			//navigation:true,
 			continuousVertical:true,
 	        css3: true,
 			afterLoad: function(anchorLink, index){
