@@ -2,7 +2,7 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class Search extends CI_Controller {
+class NameRecipe extends CI_Controller {
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,7 +20,7 @@ class Search extends CI_Controller {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this -> load -> model("search_model");
+		//$this -> load -> model("recipe_model");
 		
 		//** menu bar *//
 		$this -> load -> model("header_model");
@@ -29,9 +29,8 @@ class Search extends CI_Controller {
 	public function index() {
 		$data['menu'] = $this -> header_model -> get_type();
 		$this -> view -> page_view('menu', $data);
-		$this -> view -> page_view('search_view');
+		$this -> view -> page_view('namerecipe_view');
 	}
-
 }
 
 /* End of file login.php */

@@ -93,7 +93,22 @@
     </div>
 </div>
 
+<style>
+.section{
+	text-align:center;
+}
 
+.section img{
+	border: solid;
+	border-radius: 25px;
+	width: 640px;
+	height: 480px;	
+}
+
+.fp-slidesNav.bottom{
+	bottom: 25px;
+}
+</style>
 <!-- /container -->
 
 <script>
@@ -151,45 +166,27 @@
     	});
     	
 	    $('#ingredient_form')
-	        // IMPORTANT: You must declare .on('init.field.fv')
-	        // before calling .formValidation(options)
-	        .on('init.field.fv', function(e, data) {
-	            // data.fv      --> The FormValidation instance
-	            // data.field   --> The field name
-	            // data.element --> The field element
-	
-	            var $parent = data.element.parents('.form-group'),
-	                $icon   = $parent.find('.form-control-feedback[data-fv-icon-for="' + data.field + '"]');
-	
-	            // You can retrieve the icon element by
-	            // $icon = data.element.data('fv.icon');
-	
-	            $icon.on('click.clearing', function() {
-	                // Check if the field is valid or not via the icon class
-	                if ($icon.hasClass('glyphicon-remove')) {
-	                    // Clear the field
-	                    data.fv.resetField(data.element);
-	                }
-	            });
-	        })
-	
-	        .formValidation({
-	            framework: 'bootstrap',
-	            icon: {
-	                valid: 'glyphicon glyphicon-ok',
-	                invalid: 'glyphicon glyphicon-remove',
-	                validating: 'glyphicon glyphicon-refresh'
-	            },
-	            fields: {
-	                ingredient_input: {
-	                    validators: {
-	                        notEmpty: {
-	                            message: 'The ingredient can not empty'
-	                        }
-	                    }
-	                }
-	            }
-	        });
+        // IMPORTANT: You must declare .on('init.field.fv')
+        // before calling .formValidation(options)
+        .on('init.field.fv', function(e, data) {
+            // data.fv      --> The FormValidation instance
+            // data.field   --> The field name
+            // data.element --> The field element
+
+            var $parent = data.element.parents('.form-group'),
+                $icon   = $parent.find('.form-control-feedback[data-fv-icon-for="' + data.field + '"]');
+
+            // You can retrieve the icon element by
+            // $icon = data.element.data('fv.icon');
+
+            $icon.on('click.clearing', function() {
+                // Check if the field is valid or not via the icon class
+                if ($icon.hasClass('glyphicon-remove')) {
+                    // Clear the field
+                    data.fv.resetField(data.element);
+                }
+            });
+        })
 	});
 	
 </script>

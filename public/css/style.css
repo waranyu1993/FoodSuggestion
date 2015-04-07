@@ -237,9 +237,6 @@ header.purple { background: #C140D5; }
 header.dblue { background: #4058D5; }
 header.orange { background: #D56640; }
 
-ul a {
-		border-radius: 20px;
-}
 /*ul a:hover {
 	background: rgba(0,0,0,0.2);
 }
@@ -324,7 +321,7 @@ div.pagination span.disabled {
 
 .centert th {
 	text-align: center;
-}
+
 
 .parallax-window {
     min-height: 800px;
