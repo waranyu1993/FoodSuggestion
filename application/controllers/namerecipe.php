@@ -20,17 +20,20 @@ class NameRecipe extends CI_Controller {
 	 */
 	public function __construct() {
 		parent::__construct();
-		//$this -> load -> model("recipe_model");
-		
+		$this -> load -> model("namerecipe_model");
+
 		//** menu bar *//
+		$this->load->model('facebook_model');
 		$this -> load -> model("header_model");
 	}
 
 	public function index() {
 		$data['menu'] = $this -> header_model -> get_type();
+		$data['detail'] = $this -> namerecipe_model -> get_detail();
 		$this -> view -> page_view('menu', $data);
-		$this -> view -> page_view('namerecipe_view');
+		$this -> view -> page_view('namerecipe_view', $data);
 	}
+
 }
 
 /* End of file login.php */

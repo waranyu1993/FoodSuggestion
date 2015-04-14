@@ -20,16 +20,11 @@ class Recipe extends CI_Controller {
 	 */
 	public function __construct() {
 		parent::__construct();
-		//$this -> load -> model("recipe_model");
+		
 		
 		//** menu bar *//
+		$this->load->model('facebook_model');
 		$this -> load -> model("header_model");
-	}
-
-	public function index() {
-		$data['menu'] = $this -> header_model -> get_type();
-		$this -> view -> page_view('menu', $data);
-		$this -> view -> page_view('recipe_view');
 	}
 }
 

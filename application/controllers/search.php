@@ -23,6 +23,7 @@ class Search extends CI_Controller {
 		$this -> load -> model("search_model");
 		
 		//** menu bar *//
+		$this->load->model('facebook_model');
 		$this -> load -> model("header_model");
 	}
 

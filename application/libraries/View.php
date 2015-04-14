@@ -12,7 +12,7 @@ class CI_View {
 	{
 		$this->CI->load->view('header');
 		
-		$this->CI->load->view('menu');
+		// $this->CI->load->view('menu');
 		
 		if( $data == null ){
 			$this->CI->load->view($view_url);

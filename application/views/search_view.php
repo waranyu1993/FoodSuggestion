@@ -63,14 +63,9 @@
     </div>
     <div class="section" id="section1">
     	<div class="slide" id="slide1" data-anchor="slide1">
-			<div class="intro">
-				<h1>Food01</h1>
-				<p>
-					You can even click on the navigation and jump directly to another section.
-				</p>
-				<br /><br />
-				<img src="<?= base_url("public/foodimg/food01.jpg") ?>">
-			</div>
+			<h1>Food01</h1>
+			<br /><br />
+			<img src="<?= base_url("public/foodimg/food01.jpg") ?>">
 		</div>
 
 	    <div class="slide" id="slide2" data-anchor="slide2">
