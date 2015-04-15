@@ -6,43 +6,22 @@ class Facebook_model extends CI_Model {
 		$this -> load -> database();
 	}
 
-	public function getSession() {
-		$config = array('appId' => '1831342380425101', 
-						'secret' => '3b026c7678adc2707491bf1c170d2936'
-		// Indicates if the CURL based @ syntax for file uploads is enabled.
-		);
-        
-		$this -> load -> library('facebook', $config);
-		
-		$user = $this -> facebook -> getUser();
-		$profile = null;
-		if ($user) {
-			try {
-				// Proceed knowing you have a logged in user who's authenticated.
-				$profile = $this -> facebook -> api('/me?fields=id,name,link,email');
-
-			} catch (FacebookApiException $e) {
-				error_log($e);
-				$user = null;
-			}
-		}
-
+	public function setSession($data) {
 		$this -> db -> from('user');
-		$this -> db -> where('user.user_id', $profile['id']);
+		$this -> db -> where('user.user_id', $data['user_id']);
 		$query = $this -> db -> get();
 		$isNew = array();
 		foreach ($query->result_array() as $row) {
 			$isNew[] = $row;
 		}
 		
-
 		if ($isNew == null) {
-			$data = array('user_id' => $profile['id'], 
-						  'user_name' => $profile['name']);
+			$data = array('user_id' => $data['user_id'], 
+						  'user_name' => $data['user_name']);
 			$this -> db -> insert('user', $data);
 			
-			$user_log = array('id' => $profile['id'], 
-						      'name' => $profile['name']);
+			$user_log = array('id' => $data['user_id'], 
+						      'name' => $data['user_name']);
 		} else {
 			$user_log = array('id' => $isNew[0]['user_id'], 
 						  	  'name' => $isNew[0]['user_name']);	

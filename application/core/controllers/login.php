@@ -2,7 +2,7 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class Category extends CI_Controller {
+class Login extends CI_Controller {
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,11 +20,12 @@ class Category extends CI_Controller {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this -> load -> model("category_model");
-		$this -> load -> model("recipe_model");
+
 		//** menu bar *//
 		$this -> load -> model('facebook_model');
-		$this -> load -> model("header_model");
+	}
+
+	public function check() {
 		$fb_config = array(
             'appId'  => '1831342380425101',
             'secret' => '3b026c7678adc2707491bf1c170d2936',
@@ -49,30 +50,33 @@ class Category extends CI_Controller {
         } else {
             $data['login_url'] = $this->facebook->getLoginUrl();
         }
-		$data['menu'] = $this -> header_model -> get_type();
 		
-		$this -> view -> page_view('menu', $data);
+		// $this -> facebook_model -> getSession();
+		// $user_id = $this -> session -> userdata('id');
+		// $user_name = $this -> session -> userdata('name');
+
+		// if (!$user_id) {
+			// echo "Something going wrong.";
+		// } else {
+			// redirect('category');
+		// }
+		
+
+// 
+        $this->load->view('myview',$data);
 	}
 
-	public function index() {
-		$data['menu'] = $this -> header_model -> get_type();
-		$data['type_cate'] = $this -> recipe_model -> get_category();
-		$this -> view -> page_view('recipe_view', $data);
+	public function clear() {
+		$this -> session -> unset_userdata('id');
+		$this -> session -> unset_userdata('name');
+		redirect('category');
 	}
-
-	public function type($var) {
-		$data['menu'] = $this -> header_model -> get_type();
-		$data['type_cate'] = $this -> category_model -> get_category($var);
-		$this -> view -> page_view('category_view', $data);
+	
+	public function setdb() {
+		$user_profile = $this -> input -> post('user_profile');
+		$this->view->p($user_profile);
+		$this -> view -> page_view("category");
 	}
-
-	public function name($id_recipe) {
-		$data['menu'] = $this -> header_model -> get_type();
-		$data['detail'] = $this -> category_model -> get_detail($id_recipe);
-		$data['ingredient'] = $this -> category_model -> get_ingredient($data['detail'][0]["ing_id"]);
-		$this -> view -> page_view('namerecipe_view', $data);
-	}
-
 }
 
 /* End of file login.php */

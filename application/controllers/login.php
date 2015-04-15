@@ -26,50 +26,45 @@ class Login extends CI_Controller {
 	}
 
 	public function check() {
-		$fb_config = array(
-            'appId'  => '1831342380425101',
-            'secret' => '3b026c7678adc2707491bf1c170d2936',
-            'redirect_url' => 'http://www.easytorecipe.com/login/check'
-        );
+		$fb_config = array('appId' => '1831342380425101', 
+						   'secret' => '3b026c7678adc2707491bf1c170d2936', 
+						   'redirect_url' => 'http://www.easytorecipe.com/login/check'
+						  );
 
-        $this->load->library('facebook', $fb_config);
+		$this -> load -> library('facebook', $fb_config);
 
-        $user = $this->facebook->getUser();
+		$user = $this -> facebook -> getUser();
 
-        if ($user) {
-            try {
-                $data['user_profile'] = $this->facebook
-                    ->api('/me');
-            } catch (FacebookApiException $e) {
-                $user = null;
-            }
-        }
-
-        if ($user) {
-            $data['logout_url'] = $this->facebook->getLogoutUrl();
-        } else {
-            $data['login_url'] = $this->facebook->getLoginUrl();
-        }
-		
-		// $this -> facebook_model -> getSession();
-		// $user_id = $this -> session -> userdata('id');
-		// $user_name = $this -> session -> userdata('name');
-
-		if (!$user_id) {
-			echo "Something going wrong.";
-		} else {
-			redirect('category');
+		if ($user) {
+			try {
+				$data['user_profile'] = $this -> facebook -> api('/me');
+			} catch (FacebookApiException $e) {
+				$user = null;
+			}
 		}
-		
 
-// 
-        $this->load->view('myview',$data);
+		if ($user) {
+			$data['logout_url'] = $this -> facebook -> getLogoutUrl();
+		} else {
+			$data['login_url'] = $this -> facebook -> getLoginUrl();
+		}
+
+		$this -> load -> view('myview', $data);
 	}
 
 	public function clear() {
-		$this -> session -> unset_userdata('id');
-		$this -> session -> unset_userdata('name');
-		redirect('category');
+		//$this -> session -> unset_userdata('id');
+		//$this -> session -> unset_userdata('name');
+		$this->session->sess_destroy();
+		redirect('category', "refresh");
+	}
+
+	public function setdb() {
+		$data['user_name'] = $this -> session -> userdata('name');
+		$data['user_id'] = $this -> session -> userdata('id');
+		$this -> facebook_model -> setSession($data);
+		redirect('category', "refresh");
+		//$this -> load -> view('myview',$data);
 	}
 
 }

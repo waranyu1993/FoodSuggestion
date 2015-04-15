@@ -50,7 +50,6 @@ class Category extends CI_Controller {
             $data['login_url'] = $this->facebook->getLoginUrl();
         }
 		$data['menu'] = $this -> header_model -> get_type();
-		
 		$this -> view -> page_view('menu', $data);
 	}
 
